@@ -1,0 +1,7 @@
+<!--pages/donate/donate.wxml-->
+<text>这里是捐赠图书界面</text>
+<view>
+  <input placeholder="请输入书名" bindinput="GetName" value="{{Name_def}}"/>
+  <input placeholder="请输入作者" bindinput="GetAuth" value="{{Auth_def}}"/>
+</view>
+<button bindtap="donateBook">点击捐赠</button>

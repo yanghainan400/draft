@@ -1,0 +1,18 @@
+<!--pages/books/books.wxml-->
+<text>浏览图书</text>
+<input placeholder="请输入要查找的书名" bindinput="GetLookName"/>
+<button bindtap="NowBook">现有图书</button>
+<button bindtap="LendBook">已借出图书</button>
+<button bindtap="DefectBook">缺失图书</button>
+<scroll-view scroll-y="true" bindscrolltolower="lower" bindchange="loadingChange">
+  <view wx:for="{{bookList}}">
+    <view bindtap="PageJump" data-book_id="{{item.book_id}}" data-book_name="{{item.Name}}" data-lend_id="{{item.lend_openid}}">
+      <view>图书名：{{item.Name}}</view>
+      <view>作者：{{item.Auth}}</view> 
+      <view wx:if="{{item.book_id}}">书籍ID：{{item.book_id}}</view>
+      <view wx:if="{{item.Time}}">捐赠时间：{{item.Time}}</view>
+      <view wx:if="{{item.Times}}">缺失次数:{{item.Times}}</view>
+    </view>
+  </view>
+  <button bindtap="JumpTo">没有找到你需要的书籍？点击此处上传至缺失书籍</button>
+</scroll-view>

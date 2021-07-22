@@ -1,0 +1,38 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/books/books",
+    "pages/setting/setting",
+    "pages/donate/donate",
+    "pages/lend/lend",
+    "pages/sent/sent",
+    "pages/nowlend/nowlend",
+    "pages/userset/userset",
+    "pages/admin/admin",
+    "pages/defect/defect"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "漂缃-图书馆漂流岛小程序",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "借阅"
+    },
+    {
+      "pagePath": "pages/books/books",
+      "text": "浏览"
+    },
+    {
+      "pagePath": "pages/setting/setting",
+      "text": "设置"
+    }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}

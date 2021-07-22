@@ -1,0 +1,8 @@
+<!--pages/nowlend/nowlend.wxml-->
+<text>当前借阅图书</text>
+<view wx:for="{{lendList}}">
+  <view bindtap="sent" data-book_id="{{item.book_id}}" data-book_name="{{item.Name}}">
+    <view>借阅书籍:{{item.Name}}</view>
+    <view>借阅时间:{{item.LendTime}}</view>
+  </view>
+</view>

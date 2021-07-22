@@ -1,0 +1,15 @@
+<!--pages/lend/lend.wxml-->
+<text>借阅图书界面</text>
+<view wx:if="{{IsAdmin==true}}">管理员</view>
+<text>book_id->{{book_id}}</text>
+<view>书名：{{book_name}}</view>
+<view>书评：</view>
+<View wx:for="{{comlist}}">
+  <view>评价者：{{item.user_id}}</view>
+  <view>评价内容：{{item.Content}}</view>
+</View>
+<button bindtap="lend">借阅本书</button>
+
+<view wx:if="{{IsAdmin}}">
+  管理员界面
+</view>

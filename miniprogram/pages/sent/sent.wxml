@@ -1,0 +1,6 @@
+<!--pages/sent/sent.wxml-->
+<text>归还图书界面</text>
+<view>当前归还图书ID为:{{book_id}}</view>
+<view>当前归还书名为:{{Name}}</view>
+<textarea placeholder="输入书评" maxlength="255" auto-height="true" bindconfirm="finish" auto-focus ></textarea>
+<button bindtap="send">还书</button>

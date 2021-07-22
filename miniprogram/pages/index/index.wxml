@@ -1,0 +1,10 @@
+<!--index.wxml-->
+<view class="container">
+  <!-- 云调用 -->
+  <view class="uploader">
+    <navigator url="../donate/donate" open-type="navigate" class="uploader-text">
+      <text>手动输入捐赠图书</text>
+    </navigator>
+  </view>
+  <button bindtap="ScanDonate">扫码捐赠</button>
+</view>
