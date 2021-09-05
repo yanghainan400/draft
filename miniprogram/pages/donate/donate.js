@@ -10,10 +10,20 @@ Page({
     DefectName:'',
     Date:'',
     dona_openid:'',
-    IsDefect:0
+    IsDefect:'0',
+    TimeStamp:'',
+    HasImage:''
   },
   //获取openid
   onLoad:function(options){
+    var timestamp = Date.parse(new Date());
+    timestamp = timestamp / 1000;
+    this.setData({
+      TimeStamp:String(timestamp)
+    })
+    this.TimeStamp=timestamp
+    // console.log('TimeStamp',this.TimeStamp)
+    // console.log('Donate.defect',this.IsDefect)
     var DE=options.IsDefect
     var DeName=options.DefectName
     this.setData({
@@ -22,7 +32,7 @@ Page({
     })
     this.IsDefect=DE
     this.DefectName=DeName
-    console.log(this.IsDefect)
+    // console.log('Donate.defect',this.IsDefect)
     if (app.globalData.openid) {
       this.setData({
         openid: app.globalData.openid
@@ -38,6 +48,7 @@ Page({
       this.dona_openid=res.result.openid
     })
   },
+
   //捐赠图书
   donateBook(){
     // 获取当前时间
@@ -55,9 +66,10 @@ Page({
     // console.log(this.Name)
     if(this.Auth!=null&&this.Name!=null)
     {
+      // 如果是上传缺失图书
       if(this.IsDefect==1){
         wx.cloud.database().collection("DEFECT").add({
-          data:{
+          data:{  
             Auth:this.Auth,
             Name:this.Name,
             Times:1
@@ -81,6 +93,7 @@ Page({
          }
         })
       }
+      // 如果是正常的上传图书
       else{
         wx.cloud.database().collection("BOOK").add({
           data:{
@@ -91,9 +104,10 @@ Page({
             Name:this.Name,
             Time:Y+'-'+M+'-'+D,
             LendTime:'',
-            book_id:String(timestamp),
+            book_id:String(this.TimeStamp),
             dona_openid:this.dona_openid,
-            lend_openid:''
+            lend_openid:'',
+            HasImage:this.HasImage
           },
           success(res){
              console.log("添加成功",res),
@@ -103,6 +117,8 @@ Page({
               duration: 2000
             })
             // 而后根据书名删除缺失数据库中的数据
+            // 这个IsDefect为2表示是从缺失图书页进来的上传图书
+            // 要删去对应的缺失图书
             if(that.IsDefect==2){
               // console.log('enter 2')
               // console.log(that.DefectName)
@@ -134,6 +150,33 @@ Page({
         icon:'none'
       })
     }
+  },
+  // 上传书籍封面
+  ChooseImage(){
+    var ImageID=this.TimeStamp
+    let that = this
+    // console.log(this.TimeStamp)
+    wx.chooseImage({
+      count: 1,
+      sizeType:['compressed'],
+      // sourceType:['camera'],
+      success(res){
+        console.log(res)
+        var filepath=res.tempFilePaths[0]
+        wx.cloud.uploadFile({
+          // 将书籍ID当做封面ID
+          cloudPath:'Book_image/'+ImageID,
+          filePath:filepath,
+          success(res){
+            that.setData({
+              HasImage:1
+            })
+            that.HasImage=1
+            // this.onLoad()
+          }
+        })
+      }
+    })
   },
   GetName:function(e){
     this.Name=e.detail.value

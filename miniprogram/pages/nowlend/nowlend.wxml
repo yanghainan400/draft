@@ -4,5 +4,6 @@
   <view bindtap="sent" data-book_id="{{item.book_id}}" data-book_name="{{item.Name}}">
     <view>借阅书籍:{{item.Name}}</view>
     <view>借阅时间:{{item.LendTime}}</view>
+    <image wx:if="{{item.HasImage}}" src="cloud://lhy-hds-8g5928xecdcf6614.6c68-lhy-hds-8g5928xecdcf6614-1306073171/Book_image/{{item.book_id}}"></image>
   </view>
 </view>

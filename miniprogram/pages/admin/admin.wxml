@@ -1,9 +1,10 @@
 <!--pages/admin/admin.wxml-->
 <text>管理员界面</text>
-<navigator>修改图书信息</navigator>
-<button bindtap="ChangeBooks">修改图书信息</button>
+<button bindtap="ShowBooks">修改图书信息</button>
 <button bindtap="LookingUser">查询用户信息</button>
-<view wx:if="{{Book}}">
+
+<scroll-view scroll-y="true" bindscrolltolower="lower" bindchange="loadingChange">
+<view>
   <view wx:for="{{BookList}}" bindtap="BookChange">
     <view>书籍名称：{{item.Name}}</view>
     <view>书籍ID：{{item.book_id}}</view>
@@ -20,4 +21,4 @@
   <view>用户ID：{{item.OpendID}}</view>
   <view>用户积分：{{item.Degree}}</view>
 </view>
-<navigator>查询用户信息</navigator>
+</scroll-view>

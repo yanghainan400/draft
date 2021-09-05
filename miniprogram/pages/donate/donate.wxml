@@ -1,7 +1,13 @@
 <!--pages/donate/donate.wxml-->
-<text>这里是捐赠图书界面</text>
+<text wx:if="{{IsDefect==0}}">这里是捐赠图书界面</text>
+<text wx:if="{{IsDefect!=0}}">这里是上传缺失图书界面</text>
 <view>
   <input placeholder="请输入书名" bindinput="GetName" value="{{Name_def}}"/>
   <input placeholder="请输入作者" bindinput="GetAuth" value="{{Auth_def}}"/>
+  <button bindtap="ChooseImage" wx:if="{{IsDefect==0}}">上传书籍封面</button>
+  <view wx:if="{{LoadImage}}"></view>
+  <image wx:if="{{HasImage}}" 
+  src="cloud://lhy-hds-8g5928xecdcf6614.6c68-lhy-hds-8g5928xecdcf6614-1306073171/Book_image/{{TimeStamp}}"></image>
 </view>
-<button bindtap="donateBook">点击捐赠</button>
+<button wx:if="{{!IsDefect}}" bindtap="donateBook">点击捐赠</button>
+<button wx:if="{{IsDefect}}" bindtap="donateBook">点击上传缺失图书</button> 

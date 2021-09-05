@@ -39,7 +39,7 @@
   },
   "appid": "wx35018f1966427ba1",
   "projectname": "%E6%BC%82%E7%BC%83",
-  "libVersion": "2.14.1",
+  "libVersion": "2.18.1",
   "condition": {
     "search": {
       "list": []

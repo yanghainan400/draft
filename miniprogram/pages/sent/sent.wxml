@@ -2,5 +2,16 @@
 <text>归还图书界面</text>
 <view>当前归还图书ID为:{{book_id}}</view>
 <view>当前归还书名为:{{Name}}</view>
-<textarea placeholder="输入书评" maxlength="255" auto-height="true" bindconfirm="finish" auto-focus ></textarea>
+<textarea placeholder="输入书评" maxlength="255" auto-height="true" bindinput="GetComment"></textarea>
+<button bindtap="finish">发布书评</button>
 <button bindtap="send">还书</button>
+<view wx:if="{{IsAdmin==1}}">
+  管理员界面
+  <input placeholder="修改书名" bindinput="GetName"/>
+  <button bindtap="ReName">修改书名</button>
+  <input placeholder="修改作者" bindinput="GetAuth"/>
+  <button bindtap="ReAuth">修改作者</button>
+  <view>是否借出</view>
+  <switch checked="true" bindchange="ChangeSwitch"/>
+  <button bindtap="Delete">删除图书</button>
+</view>
